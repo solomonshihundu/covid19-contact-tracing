@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Tracer19</string>
+
+    <string name="hello">Hello !</string>
+
+    <string name="intro_msg">Could you please share your COVID-19 status. \n\nNo need to worry, this is a safe space .\n\nThank you</string>
+
+    <string name="contribution">Thank you\nfor your contribution</string>
+
+    <string name="covid_negative">Continue staying safe,wash hands with plenty of clean water and soap</string>
+
+    <string name="covid_positive">Hey! don’t worry you’ll be Okay\n\nStay home, keep warm, wash hands with plenty of clean water and soap</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
