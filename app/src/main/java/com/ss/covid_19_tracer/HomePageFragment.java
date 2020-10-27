@@ -77,24 +77,24 @@ public class HomePageFragment extends Fragment implements View.OnClickListener
     {
         if((view.getId()) == covid_positive_btn.getId())
         {
-            loadTracerData(phone,latitude,"1");
+            loadTracerData(phone,latitude,longitude,"1");
             getFragmentManager().beginTransaction().replace(R.id.fragment_container,new CovidPositiveFragment()).commit();
         }
         else if((view.getId()) == covid_negative_btn.getId())
         {
-            loadTracerData(phone,latitude,"0");
+            loadTracerData(phone,latitude, longitude,"0");
             getFragmentManager().beginTransaction().replace(R.id.fragment_container,new CovidNegativeFragment()).commit();
         }
     }
 
-    private void loadTracerData(String user_lat,String user_long,String user_status)
+    private void loadTracerData(String user_phone,String user_lat,String user_long,String user_status)
     {
         tracerDatabaseReference = FirebaseDatabase.getInstance().getReference("tracer-19");
         DatabaseReference personRef = tracerDatabaseReference.child("0712345678");
 
         if(tracerDatabaseReference != null)
         {
-            Person person = new Person("0712345678",user_lat,user_long,user_status);
+            Person person = new Person(user_phone,user_lat,user_long,user_status);
 
             personRef.setValue(person).addOnSuccessListener(new OnSuccessListener<Void>()
             {
