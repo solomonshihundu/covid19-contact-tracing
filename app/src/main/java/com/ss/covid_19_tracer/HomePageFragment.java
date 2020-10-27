@@ -2,6 +2,7 @@ package com.ss.covid_19_tracer;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener
 
     private String latitude = "";
     private String longitude = "";
-    private String phone = "";
+    private String phone = "0712345678";
 
     private DatabaseReference tracerDatabaseReference;
 
@@ -44,21 +45,29 @@ public class HomePageFragment extends Fragment implements View.OnClickListener
     {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
 
+        Log.d(TAG,"HOME_PAGE");
+
+        Bundle bundle = getArguments();
+        if(bundle != null)
+        {
+
+            latitude = bundle.getString(USER_LAT);
+            longitude = bundle.getString(USER_LOG);
+
+            Log.d(TAG,latitude);
+            Log.d(TAG,longitude);
+
+        }
+        else
+        {
+            Log.d(TAG,"DATA BUNDLE NOT FOUND");
+        }
+
         covid_negative_btn = view.findViewById(R.id.covid_negative_btn);
         covid_negative_btn.setOnClickListener(this);
 
         covid_positive_btn = view.findViewById(R.id.covid_positive_btn);
         covid_positive_btn.setOnClickListener(this);
-
-        Bundle bundle = getArguments();
-        if(bundle != null)
-        {
-            phone = bundle.getString(USER_PHONE);
-            latitude = bundle.getString(USER_LAT);
-            longitude = bundle.getString(USER_LOG);
-
-            Toast.makeText(getContext(), "Phone: "+phone+"LAT: "+latitude+"LONG: "+longitude, Toast.LENGTH_SHORT).show();
-        }
 
         return view;
     }
@@ -68,32 +77,58 @@ public class HomePageFragment extends Fragment implements View.OnClickListener
     {
         if((view.getId()) == covid_positive_btn.getId())
         {
+            loadTracerData(phone,latitude,"1");
             getFragmentManager().beginTransaction().replace(R.id.fragment_container,new CovidPositiveFragment()).commit();
         }
         else if((view.getId()) == covid_negative_btn.getId())
         {
+            loadTracerData(phone,latitude,"0");
             getFragmentManager().beginTransaction().replace(R.id.fragment_container,new CovidNegativeFragment()).commit();
         }
     }
 
-    private void loadTracerData()
+    private void loadTracerData(String user_lat,String user_long,String user_status)
     {
         tracerDatabaseReference = FirebaseDatabase.getInstance().getReference("tracer-19");
-        DatabaseReference personRef = tracerDatabaseReference.child(phone);
+        DatabaseReference personRef = tracerDatabaseReference.child("0712345678");
 
         if(tracerDatabaseReference != null)
         {
-            Person person = new Person("",latitude,longitude);
-            personRef.setValue(person).addOnSuccessListener(new OnSuccessListener<Void>() {
+            Person person = new Person("0712345678",user_lat,user_long,user_status);
+
+            personRef.setValue(person).addOnSuccessListener(new OnSuccessListener<Void>()
+            {
                 @Override
                 public void onSuccess(Void aVoid)
                 {
-                    Toast.makeText(getActivity().getApplicationContext(),"Process successful !",Toast.LENGTH_LONG).show();
+                    if(getActivity() == null)
+                        return;
+
+                    getActivity().runOnUiThread(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            Toast.makeText(getActivity().getApplicationContext(),"Process successful !",Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getActivity().getApplicationContext(),"Fatal Error !",Toast.LENGTH_SHORT).show();
+
+                    if(getActivity() == null)
+                        return;
+
+                    getActivity().runOnUiThread(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            Toast.makeText(getActivity().getApplicationContext(),"Fatal Error !",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }
             });
         }
