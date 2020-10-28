@@ -3,4 +3,43 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="apptheme">#ff9c23</color>
+    <color name="app_theme_light">#FFAF60</color>
+    <color name="app_theme_dark">#ff8c00</color>
+    <color name="btn_bkgnd">#AAA1A1</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="edit_txt_bckgnd_clr">#C4C4C4</color>
+    <color name="red">#FF0000</color>
+    <color name="lightredpearl">#FFF2DD</color>
+    <color name="customblue">#0D0D21</color>
+    <color name="yellow">#FFD700</color>
+    <color name="green">#008000</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="gray">#808080</color>
+    <color name="blue">#0000FF</color>
+    <color name="orange">#FF4500</color>
+    <color name="brown">#A52A2A</color>
+    <color name="Gold">#FFD700</color>
+    <color name="khaki">#F0E68C</color>
+    <color name="lightSeaGreen">#20B2AA</color>
+    <color name="navy">#000080</color>
+    <color name="lightCoral">#F08080</color>
+    <color name="darkSlateBlue">#483D8B</color>
+    <color name="flowerBlue">#6495ED</color>
+    <color name="darkMagenta">#8B008B</color>
+    <color name="ivory">#FFFFF0</color>
+    <color name="darkGray">#707070</color>
+    <color name="kejaTheme">#272957</color>
+    <color name="ligtGray">#e7e7f3</color>
+    <color name="kejaTheme2">
+        <gradient angle="90" startColor="#70FF97" endColor="#68E866"/>
+    </color>
+    <color name="transparent_light">#20000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_heavy">#80000000</color>
+    <color name="transparent_white_light">#80FFFFFF</color>
+    <color name="transparent_white_heavy">#20FFFFFF</color>
+    <color name="transparent_keja_heavy">#80272957</color>
+    <color name="homefeed_text_color">#e7e7f3</color>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="terms_text_margin">20dp</dimen>
+    <dimen name="terms_text_size">15sp</dimen>
+    <dimen name="box_corner_radius">10dp</dimen>
+    <dimen name="mtrl_btn_text_btn_padding">5dp</dimen>
+</resources>

@@ -22,15 +22,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener
 {
     private FloatingActionButton covid_positive_btn;
     private FloatingActionButton covid_negative_btn;
+
     private static final String TAG = "HOME_PAGE";
 
-    private static final String USER_LAT = "USER_LAT";
-    private static final String USER_LOG = "USER_LOG";
-    private static final String USER_PHONE= "USER_PHONE";
-
-    private String latitude = "";
-    private String longitude = "";
-    private String phone = "0712345678";
+    private String latitude = MainActivity.USER_LAT;
+    private String longitude =  MainActivity.USER_LOG;;
+    private String phone = ContactFragment.USER_PHONE;
 
     private DatabaseReference tracerDatabaseReference;
 
@@ -47,27 +44,16 @@ public class HomePageFragment extends Fragment implements View.OnClickListener
 
         Log.d(TAG,"HOME_PAGE");
 
-        Bundle bundle = getArguments();
-        if(bundle != null)
-        {
-
-            latitude = bundle.getString(USER_LAT);
-            longitude = bundle.getString(USER_LOG);
-
-            Log.d(TAG,latitude);
-            Log.d(TAG,longitude);
-
-        }
-        else
-        {
-            Log.d(TAG,"DATA BUNDLE NOT FOUND");
-        }
-
         covid_negative_btn = view.findViewById(R.id.covid_negative_btn);
         covid_negative_btn.setOnClickListener(this);
 
         covid_positive_btn = view.findViewById(R.id.covid_positive_btn);
         covid_positive_btn.setOnClickListener(this);
+
+        Log.d(TAG,"PHONE: "+phone);
+        Log.d(TAG,"LAT: "+latitude);
+        Log.d(TAG,"LONG: "+longitude);
+
 
         return view;
     }
@@ -90,7 +76,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener
     private void loadTracerData(String user_phone,String user_lat,String user_long,String user_status)
     {
         tracerDatabaseReference = FirebaseDatabase.getInstance().getReference("tracer-19");
-        DatabaseReference personRef = tracerDatabaseReference.child("0712345678");
+        DatabaseReference personRef = tracerDatabaseReference.child(user_phone);
 
         if(tracerDatabaseReference != null)
         {
