@@ -54,7 +54,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener
         Log.d(TAG,"LAT: "+latitude);
         Log.d(TAG,"LONG: "+longitude);
 
-
         return view;
     }
 

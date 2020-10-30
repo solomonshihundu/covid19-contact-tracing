@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 public class ContactFragment extends Fragment implements View.OnClickListener
 {
     private static final String TAG = "CONTACT_FRAGMENT";
+    
     private Button proceedToHomePage;
     private Button callHotline;
     private EditText contactEditTxt;

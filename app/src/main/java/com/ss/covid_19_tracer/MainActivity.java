@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity
         if (savedInstanceState == null)
         {
             getCurrentLocation();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new ContactFragment()).commit();
+
         }
 
     }
